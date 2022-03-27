@@ -1,0 +1,2 @@
+# locust_config
+locustのgkeとlocal用の設定ファイル
