@@ -2,8 +2,14 @@ FROM locustio/locust
 
 ADD source /locust-source
 
-ADD init-file /init-file
+ADD run.sh /home/locust/run.sh
 
 EXPOSE 5557 5558 8089
 
-ENTRYPOINT ["/init-file/run.sh"]
+USER root
+RUN chown locust:locust /home/locust/run.sh
+
+USER locust
+RUN chmod 755 /home/locust/run.sh
+
+ENTRYPOINT ["/home/locust/run.sh"]
